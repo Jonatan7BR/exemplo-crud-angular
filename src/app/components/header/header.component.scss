@@ -1,0 +1,18 @@
+.page-header {
+    width: 100%;
+    background-color: #00008B;
+    display: grid;
+    grid-template-columns: auto max-content;
+    align-items: center;
+
+    > .title {
+        text-align: center;
+        font-size: 22pt;
+        color: #FFF;
+        font-family: var(--serif);
+    }
+
+    > .themetoggler {
+        padding: 5px;
+    }
+}
