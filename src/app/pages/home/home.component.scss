@@ -1,0 +1,20 @@
+:host.home-page {
+    display: block;
+    max-width: 1200px;
+    margin: {
+        left: auto;
+        right: auto;
+    }
+
+    .peopletable {
+        border-collapse: collapse;
+
+        &, th, td {
+            border: 1px solid var(--table-border);
+        }
+
+        th, td {
+            padding: 5px;
+        }
+    }
+}

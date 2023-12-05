@@ -1,1 +1,20 @@
-<p>home works!</p>
+<h1>Pessoas cadastradas</h1>
+
+<table class="peopletable">
+    <tr>
+        <th>Nome</th>
+        <th>CPF</th>
+        <th>Cidade</th>
+    </tr>
+    @for (person of peopleData(); track person.cpf) {
+        <tr>
+            <td>{{ person.cpf | cpf }}</td>
+            <td>{{ person.name }}</td>
+            <td>{{ person.city }}, {{ person.state }}</td>
+        </tr>
+    } @empty {
+        <tr>
+            <td colspan="3">Não há pessoas cadastradas.</td>
+        </tr>
+    }
+</table>
