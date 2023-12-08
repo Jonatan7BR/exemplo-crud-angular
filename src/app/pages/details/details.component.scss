@@ -1,0 +1,26 @@
+.grid2 {
+    display: grid;
+    grid-template-columns: auto auto;
+    gap: 5px 10px;
+    align-items: center;
+
+    input, button, select, option {
+        font-size: 14pt;
+    }
+    
+    :nth-child(odd) {
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    :nth-child(even) {
+        display: flex;
+        justify-content: flex-start;
+    }
+
+    .span2 {
+        grid-column: span 2;
+        display: flex;
+        justify-content: center;
+    }
+}

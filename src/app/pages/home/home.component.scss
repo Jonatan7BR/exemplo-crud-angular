@@ -1,20 +1,19 @@
-:host.home-page {
-    display: block;
-    max-width: 1200px;
-    margin: {
-        left: auto;
-        right: auto;
+.create-new {
+    margin: 10px auto;
+
+    button {
+        font-size: 14pt;
+    }
+}
+
+.peopletable {
+    border-collapse: collapse;
+
+    &, th, td {
+        border: 1px solid var(--table-border);
     }
 
-    .peopletable {
-        border-collapse: collapse;
-
-        &, th, td {
-            border: 1px solid var(--table-border);
-        }
-
-        th, td {
-            padding: 5px;
-        }
+    th, td {
+        padding: 5px;
     }
 }

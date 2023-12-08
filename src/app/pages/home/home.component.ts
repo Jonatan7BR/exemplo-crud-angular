@@ -1,11 +1,13 @@
-import { Component, HostBinding, signal } from '@angular/core';
+import { Component, HostBinding, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import moment from 'moment';
-import { Person } from '../../../models/person';
-import { CpfPipe } from '../../../pipes/cpf.pipe';
+import { Person } from '../../models/person';
+import { CpfPipe } from '../../pipes/cpf.pipe';
+import { Router } from '@angular/router';
 
 const FAKE_DATA: Person[] = [
   {
+    id: 1,
     name: 'Olivia Analu Moreira',
     cpf: '84427553303',
     birthday: moment('1997-06-24').toDate(),
@@ -15,6 +17,7 @@ const FAKE_DATA: Person[] = [
     state: 'SC'
   },
   {
+    id: 2,
     name: 'Catarina Cláudia Bernardes',
     cpf: '05185344130',
     birthday: moment('1956-03-06').toDate(),
@@ -24,6 +27,7 @@ const FAKE_DATA: Person[] = [
     state: 'PB'
   },
   {
+    id: 3,
     name: 'Jaqueline Mariane Yasmin Martins',
     cpf: '43852716748',
     birthday: moment('1956-01-14').toDate(),
@@ -33,6 +37,7 @@ const FAKE_DATA: Person[] = [
     state: 'PA'
   },
   {
+    id: 4,
     name: 'Vicente Oliver Caio Lopes',
     cpf: '90231999283',
     birthday: moment('1971-11-16').toDate(),
@@ -42,6 +47,7 @@ const FAKE_DATA: Person[] = [
     state: 'PA'
   },
   {
+    id: 5,
     name: 'Caroline Elisa Gabriela Moraes',
     cpf: '51679864432',
     birthday: moment('1983-02-23').toDate(),
@@ -60,7 +66,15 @@ const FAKE_DATA: Person[] = [
   styleUrl: './home.component.scss'
 })
 export class HomeComponent {
-  @HostBinding('class.home-page') homeClass = true;
+  private router = inject(Router);
 
   peopleData = signal(FAKE_DATA);
+
+  goToEditPage(id: number): void {
+    this.router.navigateByUrl(`/editar/${id}`);
+  }
+
+  goToNewPage(): void {
+    this.router.navigateByUrl('/novo');
+  }
 }
