@@ -41,10 +41,6 @@
     </div>
 
     <div class="span2">
-        <button type="submit">Enviar</button>
+        <button type="submit">{{ buttonLabel() }}</button>
     </div>
-
-    @if (formInvalid()) {
-        <p class="span2">Há dados inválidos no formulário.</p>
-    }
 </form>

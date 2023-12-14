@@ -6,6 +6,7 @@ import moment from 'moment';
 import { validateCpf, validatePhone } from '../../utils/validators';
 import { Person } from '../../models/person';
 import { STATES } from '../../utils/states';
+import { PeopleService } from '../../services/people.service';
 
 const FAKE_DATA: Person = {
   id: 1,
@@ -29,6 +30,8 @@ export class DetailsComponent implements OnInit {
   private activatedRoute = inject(ActivatedRoute);
   private formBuilder = inject(FormBuilder);
   private router = inject(Router);
+  private peopleService = inject(PeopleService);
+
   private id = signal('');
 
   title = computed(() => this.id() ? 'Editar cadastro' : 'Cadastrar pessoa');
@@ -50,16 +53,12 @@ export class DetailsComponent implements OnInit {
       state: new FormControl<string>('', Validators.required)
     });
 
-    console.log(this.form.controls['birthday'].value);
-
     this.activatedRoute.params.subscribe(params => {
       this.id.set(params['id']);
-      console.log(this.id());
 
       if (this.id()) {
-        this.form.patchValue({
-          ...FAKE_DATA,
-          birthday: moment(FAKE_DATA.birthday).format('YYYY-MM-DD')
+        this.peopleService.getPerson(+this.id()).subscribe(person => {
+          this.form.patchValue({ ...person });
         });
       }
     });

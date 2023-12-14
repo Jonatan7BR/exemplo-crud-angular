@@ -8,3 +8,5 @@ export interface Person {
     city: string;
     state: string;
 }
+
+export type PersonBody = Omit<Person, 'id'>;

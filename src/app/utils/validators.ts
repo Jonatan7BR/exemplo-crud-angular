@@ -7,18 +7,18 @@ export const validateCpf = (): ValidatorFn =>
             return null;
         }
 
-        if (!value.match(/^\d{11}$/) || value.match(/^(.)\1+$/)) {
+        if (!/^\d{11}$/.test(value) || /^(.)\1+$/.test(value)) {
             return { invalidCpf: true };
         }
 
         const digits = [...value].map(digit => +digit);
-        const sum1 = digits.slice(0, 9).map((d, i) => d * (10 - i)).reduce((p, c) => p + c);
-        const sum2 = digits.slice(0, 10).map((d, i) => d * (11 - i)).reduce((p, c) => p + c);
+        const sum1 = digits.slice(0, 9).map((d, i) => d * (10 - i)).reduce((p, c) => p + c) % 11;
+        const sum2 = digits.slice(0, 10).map((d, i) => d * (11 - i)).reduce((p, c) => p + c) % 11;
 
-        const vd1 = 11 - (sum1 % 11);
-        const vd2 = 11 - (sum2 % 11);
+        const vd1 = sum1 < 2 ? 0 : 11 - sum1;
+        const vd2 = sum2 < 2 ? 0 : 11 - sum2;
 
-        if (vd1 !== digits[10] || vd2 !== digits[11]) {
+        if (vd1 !== digits[9] || vd2 !== digits[10]) {
             return { invalidCpf: true };
         }
         return null;
@@ -26,4 +26,4 @@ export const validateCpf = (): ValidatorFn =>
 
 export const validatePhone = (): ValidatorFn =>
     (control: AbstractControl<string>): ValidationErrors | null => 
-        control.value.match(/^\d{10,11}$/) ? null : { invalidPhone: true };
+        /^\d{10,11}$/.test(control.value) ? null : { invalidPhone: true };
