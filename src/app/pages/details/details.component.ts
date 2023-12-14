@@ -7,17 +7,7 @@ import { validateCpf, validatePhone } from '../../utils/validators';
 import { Person } from '../../models/person';
 import { STATES } from '../../utils/states';
 import { PeopleService } from '../../services/people.service';
-
-const FAKE_DATA: Person = {
-  id: 1,
-  name: 'Olivia Analu Moreira',
-  cpf: '84427553303',
-  birthday: moment('1997-06-24').toDate(),
-  email: 'oliviaanalumoreira@advogadostb.com.br',
-  phone: '48988129805',
-  city: 'Florianópolis',
-  state: 'SC'
-};
+import { LoaderService } from '../../services/loader.service';
 
 @Component({
   selector: 'app-details',
@@ -31,6 +21,7 @@ export class DetailsComponent implements OnInit {
   private formBuilder = inject(FormBuilder);
   private router = inject(Router);
   private peopleService = inject(PeopleService);
+  private loaderService = inject(LoaderService);
 
   private id = signal('');
 
@@ -38,7 +29,6 @@ export class DetailsComponent implements OnInit {
   buttonLabel = computed(() => this.id() ? 'Atualizar' : 'Cadastrar');
 
   form!: FormGroup;
-  formInvalid = signal(false);
 
   readonly states = STATES.sort((a, b) => a.name.localeCompare(b.name));
 
@@ -57,8 +47,10 @@ export class DetailsComponent implements OnInit {
       this.id.set(params['id']);
 
       if (this.id()) {
+        this.loaderService.setLoading(true);
         this.peopleService.getPerson(+this.id()).subscribe(person => {
           this.form.patchValue({ ...person });
+          this.loaderService.setLoading(false);
         });
       }
     });
@@ -66,7 +58,6 @@ export class DetailsComponent implements OnInit {
 
   sendData(): void {
     if (this.form.invalid) {
-      this.formInvalid.set(true);
       return;
     }
 

@@ -5,6 +5,7 @@ import { Person } from '../../models/person';
 import { CpfPipe } from '../../pipes/cpf.pipe';
 import { Router } from '@angular/router';
 import { PeopleService } from '../../services/people.service';
+import { LoaderService } from '../../services/loader.service';
 
 @Component({
   selector: 'app-home',
@@ -16,12 +17,15 @@ import { PeopleService } from '../../services/people.service';
 export class HomeComponent implements OnInit {
   private router = inject(Router);
   private peopleService = inject(PeopleService);
+  private loaderService = inject(LoaderService);
 
   peopleData = signal<Person[]>([]);
 
   ngOnInit(): void {
+    this.loaderService.setLoading(true);
     this.peopleService.getPeople().subscribe(people => {
       this.peopleData.set(people);
+      this.loaderService.setLoading(false);
     });
   }
 
