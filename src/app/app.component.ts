@@ -4,11 +4,12 @@ import { RouterOutlet } from '@angular/router';
 import { HeaderComponent } from './components/header/header.component';
 import { ThemeService } from './services/theme.service';
 import { LoaderComponent } from './components/loader/loader.component';
+import { SnackbarComponent } from './components/snackbar/snackbar.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, HeaderComponent, LoaderComponent],
+  imports: [CommonModule, RouterOutlet, HeaderComponent, LoaderComponent, SnackbarComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })

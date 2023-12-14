@@ -23,4 +23,12 @@ export class PeopleService {
   registerPerson(person: PersonBody): Observable<Person> {
     return this.http.post<Person>(`${apiURL}people`, person);
   }
+
+  updatePerson(id: number, person: PersonBody): Observable<Person> {
+    return this.http.put<Person>(`${apiURL}people/${id}`, person);
+  }
+
+  removePerson(id: number): Observable<Object> {
+    return this.http.delete(`${apiURL}people/${id}`);
+  }
 }

@@ -1,0 +1,5 @@
+@if (visible()) {
+    <div class="snack-bar-container">
+        <div class="snack-bar" [class.show]="visible()" [ngClass]="messageType()">{{ message() }}</div>
+    </div>
+}
