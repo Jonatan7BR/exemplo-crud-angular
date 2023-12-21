@@ -23,4 +23,9 @@
         display: flex;
         justify-content: center;
     }
+
+    .button-row {
+        display: flex;
+        gap: 5px;
+    }
 }

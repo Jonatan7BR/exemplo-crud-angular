@@ -40,7 +40,17 @@
         </select>
     </div>
 
-    <div class="span2">
+    <div class="span2 button-row">
         <button type="submit">{{ buttonLabel() }}</button>
+        @if (deletable()) {
+            <button type="button" (click)="confirmDelete()">Excluir</button>
+        }
     </div>
 </form>
+
+<app-confirm-modal 
+    [dialogText]="deleteModalText"
+    [visible]="deleteModalVisible"
+    (confirm)="deleteData($event)"
+>
+</app-confirm-modal>

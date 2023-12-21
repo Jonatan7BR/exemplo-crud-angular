@@ -2,18 +2,18 @@ import { Component, OnInit, computed, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import moment from 'moment';
 import { validateCpf, validatePhone } from '../../utils/validators';
-import { Person, PersonBody } from '../../models/person';
+import { PersonBody } from '../../models/person';
 import { STATES } from '../../utils/states';
 import { PeopleService } from '../../services/people.service';
 import { LoaderService } from '../../services/loader.service';
 import { MessageService, MessageType } from '../../services/message.service';
+import { ConfirmModalComponent } from '../../components/confirm-modal/confirm-modal.component';
 
 @Component({
   selector: 'app-details',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, ConfirmModalComponent],
   templateUrl: './details.component.html',
   styleUrl: './details.component.scss'
 })
@@ -27,12 +27,16 @@ export class DetailsComponent implements OnInit {
 
   private id = signal('');
 
+  deleteModalVisible = signal(false);
+
   title = computed(() => this.id() ? 'Editar cadastro' : 'Cadastrar pessoa');
   buttonLabel = computed(() => this.id() ? 'Atualizar' : 'Cadastrar');
+  deletable = computed(() => !!this.id());
 
   form!: FormGroup;
 
   readonly states = STATES.sort((a, b) => a.name.localeCompare(b.name));
+  readonly deleteModalText = signal('Deseja excluir este cadastro?');
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({
@@ -118,5 +122,28 @@ export class DetailsComponent implements OnInit {
         }
       });
     }
+  }
+
+  confirmDelete(): void {
+    this.deleteModalVisible.set(true);
+  }
+
+  deleteData(event: boolean): void {
+    this.deleteModalVisible.set(false);
+    if (!event) {
+      return;
+    }
+    this.loaderService.setLoading(true);
+    this.peopleService.removePerson(+this.id()).subscribe({
+      next: () => {
+        this.messageService.sendMessage('Dados excluídos com sucesso');
+        this.loaderService.setLoading(false);
+        this.router.navigateByUrl('/');
+      },
+      error: () => {
+        this.messageService.sendMessage('Não foi possível excluir os dados', MessageType.Error);
+        this.loaderService.setLoading(false);
+      }
+    });
   }
 }

@@ -11,7 +11,7 @@
         <th>Cidade</th>
         <th>&nbsp;</th>
     </tr>
-    @for (person of peopleData(); track person.id) {
+    @for (person of peopleData(); track $index) {
         <tr>
             <td>{{ person.cpf | cpf }}</td>
             <td>{{ person.name }}</td>
