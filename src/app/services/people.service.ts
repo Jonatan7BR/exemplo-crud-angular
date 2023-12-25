@@ -7,28 +7,28 @@ import { environment } from '../../environments/environment';
 const { apiURL } = environment;
 
 @Injectable({
-  providedIn: 'root'
+	providedIn: 'root'
 })
 export class PeopleService {
-  private http = inject(HttpClient);
+	private http = inject(HttpClient);
 
-  getPeople(): Observable<Person[]> {
-    return this.http.get<Person[]>(`${apiURL}people`);
-  }
+	getPeople(): Observable<Person[]> {
+		return this.http.get<Person[]>(`${apiURL}people`);
+	}
 
-  getPerson(id: number): Observable<Person> {
-    return this.http.get<Person>(`${apiURL}people/${id}`);
-  }
+	getPerson(id: number): Observable<Person> {
+		return this.http.get<Person>(`${apiURL}people/${id}`);
+	}
 
-  registerPerson(person: PersonBody): Observable<Person> {
-    return this.http.post<Person>(`${apiURL}people`, person);
-  }
+	registerPerson(person: PersonBody): Observable<Person> {
+		return this.http.post<Person>(`${apiURL}people`, person);
+	}
 
-  updatePerson(id: number, person: PersonBody): Observable<Person> {
-    return this.http.put<Person>(`${apiURL}people/${id}`, person);
-  }
+	updatePerson(id: number, person: PersonBody): Observable<Person> {
+		return this.http.put<Person>(`${apiURL}people/${id}`, person);
+	}
 
-  removePerson(id: number): Observable<Object> {
-    return this.http.delete(`${apiURL}people/${id}`);
-  }
+	removePerson(id: number): Observable<Object> {
+		return this.http.delete(`${apiURL}people/${id}`);
+	}
 }

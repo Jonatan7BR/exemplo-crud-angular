@@ -1,17 +1,16 @@
 import { Injectable, effect, signal } from '@angular/core';
 
 @Injectable({
-  providedIn: 'root'
+	providedIn: 'root'
 })
 export class ThemeService {
+	isDarkMode = signal(false);
 
-  isDarkMode = signal(false);
+	setTheme(darkMode: boolean): void {
+		this.isDarkMode.set(darkMode);
+	}
 
-  setTheme(darkMode: boolean): void {
-    this.isDarkMode.set(darkMode);
-  }
-
-  toggleTheme(): void {
-    this.isDarkMode.update(mode => !mode);
-  }
+	toggleTheme(): void {
+		this.isDarkMode.update(mode => !mode);
+	}
 }

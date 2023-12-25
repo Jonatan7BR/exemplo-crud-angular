@@ -1,31 +1,34 @@
 .grid2 {
-    display: grid;
-    grid-template-columns: auto auto;
-    gap: 5px 10px;
-    align-items: center;
+	display: grid;
+	grid-template-columns: auto auto;
+	gap: 5px 10px;
+	align-items: center;
 
-    input, button, select, option {
-        font-size: 14pt;
-    }
-    
-    :nth-child(odd) {
-        display: flex;
-        justify-content: flex-end;
-    }
+	input,
+	button,
+	select,
+	option {
+		font-size: 14pt;
+	}
 
-    :nth-child(even) {
-        display: flex;
-        justify-content: flex-start;
-    }
+	:nth-child(odd) {
+		display: flex;
+		justify-content: flex-end;
+	}
 
-    .span2 {
-        grid-column: span 2;
-        display: flex;
-        justify-content: center;
-    }
+	:nth-child(even) {
+		display: flex;
+		justify-content: flex-start;
+	}
 
-    .button-row {
-        display: flex;
-        gap: 5px;
-    }
+	.span2 {
+		grid-column: span 2;
+		display: flex;
+		justify-content: center;
+	}
+
+	.button-row {
+		display: flex;
+		gap: 5px;
+	}
 }

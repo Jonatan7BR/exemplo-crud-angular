@@ -1,26 +1,26 @@
 <h1>Pessoas cadastradas</h1>
 
 <div class="create-new">
-    <button type="button" (click)="goToNewPage()">Criar novo cadastro</button>
+	<button type="button" (click)="goToNewPage()">Criar novo cadastro</button>
 </div>
 
 <table class="peopletable">
-    <tr>
-        <th>CPF</th>
-        <th>Nome</th>
-        <th>Cidade</th>
-        <th>&nbsp;</th>
-    </tr>
-    @for (person of peopleData(); track $index) {
-        <tr>
-            <td>{{ person.cpf | cpf }}</td>
-            <td>{{ person.name }}</td>
-            <td>{{ person.city }}, {{ person.state }}</td>
-            <td><button type="button" (click)="goToEditPage(person.id)">Editar</button></td>
-        </tr>
-    } @empty {
-        <tr>
-            <td colspan="4">Não há pessoas cadastradas.</td>
-        </tr>
-    }
+	<tr>
+		<th>CPF</th>
+		<th>Nome</th>
+		<th>Cidade</th>
+		<th>&nbsp;</th>
+	</tr>
+	@for (person of peopleData(); track $index) {
+		<tr>
+			<td>{{ person.cpf | cpf }}</td>
+			<td>{{ person.name }}</td>
+			<td>{{ person.city }}, {{ person.state }}</td>
+			<td><button type="button" (click)="goToEditPage(person.id)">Editar</button></td>
+		</tr>
+	} @empty {
+		<tr>
+			<td colspan="4">Não há pessoas cadastradas.</td>
+		</tr>
+	}
 </table>

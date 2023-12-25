@@ -1,11 +1,11 @@
 @if (visible()) {
-    <div class="modal-container">
-        <div class="modal">
-            <p>{{ dialogText() }}</p>
-            <div class="button-row">
-                <button type="button" (click)="chooseOption(true)">Sim</button>
-                <button type="button" (click)="chooseOption(false)">Não</button>
-            </div>
-        </div>
-    </div>
+	<div class="modal-container">
+		<div class="modal">
+			<p>{{ dialogText() }}</p>
+			<div class="button-row">
+				<button type="button" (click)="chooseOption(true)">Sim</button>
+				<button type="button" (click)="chooseOption(false)">Não</button>
+			</div>
+		</div>
+	</div>
 }

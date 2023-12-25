@@ -7,41 +7,41 @@ import { LoaderComponent } from './components/loader/loader.component';
 import { SnackbarComponent } from './components/snackbar/snackbar.component';
 
 @Component({
-  selector: 'app-root',
-  standalone: true,
-  imports: [CommonModule, RouterOutlet, HeaderComponent, LoaderComponent, SnackbarComponent],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+	selector: 'app-root',
+	standalone: true,
+	imports: [CommonModule, RouterOutlet, HeaderComponent, LoaderComponent, SnackbarComponent],
+	templateUrl: './app.component.html',
+	styleUrl: './app.component.scss'
 })
 export class AppComponent implements OnInit {
-  private themeService = inject(ThemeService);
+	private themeService = inject(ThemeService);
 
-  darkModeOn = this.themeService.isDarkMode;
+	darkModeOn = this.themeService.isDarkMode;
 
-  constructor() {
-    effect(() => {
-      if (this.darkModeOn()) {
-        document.body.classList.remove('lightmode');
-        document.body.classList.add('darkmode');
-        document.documentElement.style.setProperty('color-scheme', 'dark');
-        localStorage.setItem('darkMode', '1');
-      } else {
-        document.body.classList.remove('darkmode');
-        document.body.classList.add('lightmode');
-        document.documentElement.style.setProperty('color-scheme', 'light');
-        localStorage.setItem('darkMode', '0');
-      }
-    });
-  }
+	constructor() {
+		effect(() => {
+			if (this.darkModeOn()) {
+				document.body.classList.remove('lightmode');
+				document.body.classList.add('darkmode');
+				document.documentElement.style.setProperty('color-scheme', 'dark');
+				localStorage.setItem('darkMode', '1');
+			} else {
+				document.body.classList.remove('darkmode');
+				document.body.classList.add('lightmode');
+				document.documentElement.style.setProperty('color-scheme', 'light');
+				localStorage.setItem('darkMode', '0');
+			}
+		});
+	}
 
-  ngOnInit(): void {
-    let userPrefersDarkMode = false;
-    const themePreference = localStorage.getItem('darkMode');
-    if (themePreference !== null) {
-      userPrefersDarkMode = themePreference === '1';
-    } else {
-      userPrefersDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    }
-    this.themeService.setTheme(userPrefersDarkMode);
-  }
+	ngOnInit(): void {
+		let userPrefersDarkMode = false;
+		const themePreference = localStorage.getItem('darkMode');
+		if (themePreference !== null) {
+			userPrefersDarkMode = themePreference === '1';
+		} else {
+			userPrefersDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
+		}
+		this.themeService.setTheme(userPrefersDarkMode);
+	}
 }

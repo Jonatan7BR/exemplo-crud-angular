@@ -1,12 +1,7 @@
-<button
-    type="button"
-    class="toggle-theme material-symbols-outlined"
-    [title]="buttonTitle()"
-    (click)="changeTheme()"
->
-    @if (darkModeOn()) {
-        dark_mode
-    } @else {
-        light_mode
-    }
+<button type="button" class="toggle-theme material-symbols-outlined" [title]="buttonTitle()" (click)="changeTheme()">
+	@if (darkModeOn()) {
+		dark_mode
+	} @else {
+		light_mode
+	}
 </button>

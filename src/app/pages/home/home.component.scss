@@ -1,19 +1,22 @@
 .create-new {
-    margin: 10px auto;
+	margin: 10px auto;
 
-    button {
-        font-size: 14pt;
-    }
+	button {
+		font-size: 14pt;
+	}
 }
 
 .peopletable {
-    border-collapse: collapse;
+	border-collapse: collapse;
 
-    &, th, td {
-        border: 1px solid var(--table-border);
-    }
+	&,
+	th,
+	td {
+		border: 1px solid var(--table-border);
+	}
 
-    th, td {
-        padding: 5px;
-    }
+	th,
+	td {
+		padding: 5px;
+	}
 }

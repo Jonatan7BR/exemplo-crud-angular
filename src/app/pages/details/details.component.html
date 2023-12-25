@@ -1,56 +1,52 @@
 <h1>{{ title() }}</h1>
 
 <form class="grid2" [formGroup]="form" ngNativeValidate (ngSubmit)="sendData()">
-    <p>Nome:</p>
-    <div>
-        <input type="text" formControlName="name" required />
-    </div>
+	<p>Nome:</p>
+	<div>
+		<input type="text" formControlName="name" required />
+	</div>
 
-    <p>CPF:</p>
-    <div>
-        <input type="text" formControlName="cpf" inputmode="numeric" pattern="\d{11}" required />
-    </div>
+	<p>CPF:</p>
+	<div>
+		<input type="text" formControlName="cpf" inputmode="numeric" pattern="\d{11}" required />
+	</div>
 
-    <p>Data de nascimento:</p>
-    <div>
-        <input type="date" formControlName="birthday" required />
-    </div>
+	<p>Data de nascimento:</p>
+	<div>
+		<input type="date" formControlName="birthday" required />
+	</div>
 
-    <p>E-mail:</p>
-    <div>
-        <input type="email" formControlName="email" required />
-    </div>
+	<p>E-mail:</p>
+	<div>
+		<input type="email" formControlName="email" required />
+	</div>
 
-    <p>Telefone:</p>
-    <div>
-        <input type="tel" formControlName="phone" required />
-    </div>
+	<p>Telefone:</p>
+	<div>
+		<input type="tel" formControlName="phone" required />
+	</div>
 
-    <p>Cidade:</p>
-    <div>
-        <input type="text" formControlName="city" required />
-    </div>
+	<p>Cidade:</p>
+	<div>
+		<input type="text" formControlName="city" required />
+	</div>
 
-    <p>Estado:</p>
-    <div>
-        <select formControlName="state">
-            @for (state of states; track $index) {
-                <option [value]="state.abbr">{{ state.name }}</option>
-            }
-        </select>
-    </div>
+	<p>Estado:</p>
+	<div>
+		<select formControlName="state">
+			@for (state of states; track $index) {
+				<option [value]="state.abbr">{{ state.name }}</option>
+			}
+		</select>
+	</div>
 
-    <div class="span2 button-row">
-        <button type="submit">{{ buttonLabel() }}</button>
-        @if (deletable()) {
-            <button type="button" (click)="confirmDelete()">Excluir</button>
-        }
-    </div>
+	<div class="span2 button-row">
+		<button type="submit">{{ buttonLabel() }}</button>
+		@if (deletable()) {
+			<button type="button" (click)="confirmDelete()">Excluir</button>
+		}
+	</div>
 </form>
 
-<app-confirm-modal 
-    [dialogText]="deleteModalText"
-    [visible]="deleteModalVisible"
-    (confirm)="deleteData($event)"
->
+<app-confirm-modal [dialogText]="deleteModalText" [visible]="deleteModalVisible" (confirm)="deleteData($event)">
 </app-confirm-modal>
