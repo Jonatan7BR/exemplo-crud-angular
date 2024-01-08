@@ -65,7 +65,7 @@ export class DetailsComponent implements OnInit {
 						this.loaderService.setLoading(false);
 					},
 					error: () => {
-						this.messageService.sendMessage('Ocorreu um erro ao carregar os dados', MessageType.Error);
+						this.messageService.showMessage('Ocorreu um erro ao carregar os dados', MessageType.Error);
 						this.loaderService.setLoading(false);
 					}
 				});
@@ -76,12 +76,12 @@ export class DetailsComponent implements OnInit {
 	sendData(): void {
 		console.log(this.form.valid);
 		if (this.form.controls['cpf'].invalid) {
-			this.messageService.sendMessage('O número do CPF está inválido.', MessageType.Error);
+			this.messageService.showMessage('O número do CPF está inválido.', MessageType.Error);
 			return;
 		}
 
 		if (this.form.controls['phone'].invalid) {
-			this.messageService.sendMessage('O número de telefone está em um formato inválido.', MessageType.Error);
+			this.messageService.showMessage('O número de telefone está em um formato inválido.', MessageType.Error);
 			return;
 		}
 
@@ -100,12 +100,12 @@ export class DetailsComponent implements OnInit {
 		if (this.id()) {
 			this.peopleService.updatePerson(+this.id(), body).subscribe({
 				next: () => {
-					this.messageService.sendMessage('Dados atualizados com sucesso');
+					this.messageService.showMessage('Dados atualizados com sucesso');
 					this.loaderService.setLoading(false);
 					this.router.navigateByUrl('/');
 				},
 				error: () => {
-					this.messageService.sendMessage(
+					this.messageService.showMessage(
 						'Não foi possível atualizar os dados do cadastro.',
 						MessageType.Error
 					);
@@ -115,12 +115,12 @@ export class DetailsComponent implements OnInit {
 		} else {
 			this.peopleService.registerPerson(body).subscribe({
 				next: () => {
-					this.messageService.sendMessage('Dados cadastrados com sucesso');
+					this.messageService.showMessage('Dados cadastrados com sucesso');
 					this.loaderService.setLoading(false);
 					this.router.navigateByUrl('/');
 				},
 				error: () => {
-					this.messageService.sendMessage(
+					this.messageService.showMessage(
 						'Não foi possível realizar o cadastro dos dados.',
 						MessageType.Error
 					);
@@ -142,12 +142,12 @@ export class DetailsComponent implements OnInit {
 		this.loaderService.setLoading(true);
 		this.peopleService.removePerson(+this.id()).subscribe({
 			next: () => {
-				this.messageService.sendMessage('Dados excluídos com sucesso');
+				this.messageService.showMessage('Dados excluídos com sucesso');
 				this.loaderService.setLoading(false);
 				this.router.navigateByUrl('/');
 			},
 			error: () => {
-				this.messageService.sendMessage('Não foi possível excluir os dados', MessageType.Error);
+				this.messageService.showMessage('Não foi possível excluir os dados', MessageType.Error);
 				this.loaderService.setLoading(false);
 			}
 		});

@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, effect, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MessageService } from '../../services/message.service';
 
@@ -15,4 +15,14 @@ export class SnackbarComponent {
 	message = this.messageService.message;
 	messageType = this.messageService.messageType;
 	visible = this.messageService.messageVisible;
+
+	constructor() {
+		effect(() => {
+			if (this.visible()) {
+				setTimeout(() => {
+					this.messageService.hideMessage();
+				}, 5000);
+			}
+		});
+	}
 }

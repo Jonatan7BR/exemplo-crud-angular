@@ -31,7 +31,7 @@ export class HomeComponent implements OnInit {
 				this.loaderService.setLoading(false);
 			},
 			error: () => {
-				this.messageService.sendMessage('Ocorreu um erro ao carregar os dados', MessageType.Error);
+				this.messageService.showMessage('Ocorreu um erro ao carregar os dados', MessageType.Error);
 				this.loaderService.setLoading(false);
 			}
 		});

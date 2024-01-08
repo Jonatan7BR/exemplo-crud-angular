@@ -13,13 +13,13 @@ export class MessageService {
 	messageType = signal(MessageType.Success);
 	messageVisible = signal(false);
 
-	sendMessage(message: string, messageType: MessageType = MessageType.Success): void {
+	showMessage(message: string, messageType: MessageType = MessageType.Success): void {
 		this.message.set(message);
 		this.messageType.set(messageType);
 		this.messageVisible.set(true);
+	}
 
-		setTimeout(() => {
-			this.messageVisible.set(false);
-		}, 5000);
+	hideMessage(): void {
+		this.messageVisible.set(false);
 	}
 }
