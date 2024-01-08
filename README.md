@@ -18,7 +18,7 @@ Ou, caso o Angular CLI esteja instalado globalmente, o comando
 
 Node.js deve estar instalado para executar este projeto.
 
-Se necessário, a URL do servidor pode ser alterada no arquivo `src/api/people.ts`.
+Se necessário, a URL do servidor pode ser alterada no arquivo `src/environments/environment.ts`.
 
 ---
 
