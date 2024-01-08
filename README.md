@@ -1,27 +1,27 @@
-# ExemploCrudAngular
+# Exemplo de CRUD em Angular
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.0.3.
+Este projeto possui um exemplo de cadastro de pessoas implementado em Angular.
 
-## Development server
+Para executar este projeto localmente, primeiro você deve executar o servidor do projeto, que está [neste link](https://github.com/Jonatan7BR/exemplo-crud-json).
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Em seguida, clone este projeto na sua máquina local, abra uma janela de terminal na pasta dele e execute o comando
 
-## Code scaffolding
+```npm install```
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+E, em seguida, o comando
 
-## Build
+```npm start```
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+Ou, caso o Angular CLI esteja instalado globalmente, o comando
 
-## Running unit tests
+```ng serve```
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Node.js deve estar instalado para executar este projeto.
 
-## Running end-to-end tests
+Se necessário, a URL do servidor pode ser alterada no arquivo `src/api/people.ts`.
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+---
 
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+### Outras versões deste projeto:
++ [Versão em React](https://github.com/Jonatan7BR/exemplo-crud-react)
++ [Versão em Vue](https://github.com/Jonatan7BR/exemplo-crud-vue)
