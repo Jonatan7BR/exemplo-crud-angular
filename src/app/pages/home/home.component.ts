@@ -1,6 +1,5 @@
-import { Component, HostBinding, OnInit, inject, signal } from '@angular/core';
+import { Component, OnInit, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import moment from 'moment';
 import { Person } from '../../models/person';
 import { CpfPipe } from '../../pipes/cpf.pipe';
 import { Router } from '@angular/router';

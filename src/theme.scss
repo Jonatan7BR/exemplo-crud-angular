@@ -6,26 +6,12 @@ body {
 	&.lightmode {
 		--page-background: #eee;
 		--text-color: #000;
-		--card-border: #999;
-		--scrollbar-bg: #ccc;
-		--scrollbar-fg: #555;
-		--pagination-button-border: #555;
-		--pagination-button-text: #000;
-		--pagination-button-bg: #ccc;
-		--pagination-button-active-text: #c0c;
 		--table-border: #000;
 	}
 
 	&.darkmode {
 		--page-background: #222;
 		--text-color: #fff;
-		--card-border: #777;
-		--scrollbar-bg: #444;
-		--scrollbar-fg: #aaa;
-		--pagination-button-border: #aaa;
-		--pagination-button-text: #fff;
-		--pagination-button-bg: #444;
-		--pagination-button-active-text: #0ee;
 		--table-border: #fff;
 	}
 }
